@@ -1,0 +1,35 @@
+vector<int> spirallyTraverse(vector<vector<int> > matrix, int r, int c) 
+    {
+        // code here
+        vector <int> v;
+        int dir = 0;
+        int left = 0, right = c-1, top = 0, down = r-1;
+        while(top<=down && left <= right){
+            if(dir == 0){  // I want to move from left to right
+                for(int i = left; i <= right; i++){
+                    v.push_back(matrix[top][i]);
+                }
+                top++;
+            }
+            if(dir == 1){  // I want to move from top to bottom
+                for(int i = top; i <= down; i++){
+                    v.push_back(matrix[i][right]);
+                }
+                right--;
+            }
+            if(dir == 2){  // I want to move from right to left
+                for(int i = right; i >= left; i--){
+                    v.push_back(matrix[down][i]);
+                }
+                down--;
+            }
+            if(dir == 3){  // I want to move from bottom to top
+                for(int i = down; i >= top; i--){
+                    v.push_back(matrix[i][left]);
+                }
+                left++;
+            }
+            dir = (dir+1)%4;
+        }
+        return v;
+    }
